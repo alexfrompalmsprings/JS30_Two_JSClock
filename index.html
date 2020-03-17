@@ -77,11 +77,16 @@
     function setDate() {
       //get the actual time
       const now = new Date();
-      console.log('the actual time', now);
+      // console.log('the actual time', now);
 
       //lets just get the seconds
       const seconds = now.getSeconds();
-      console.log('the exact second', seconds)
+      // console.log('the exact second', seconds)
+
+      // create a variable to get the degrees
+      // 360` in the circle and we divide by 60 seconds
+      const secondDegrees = ((seconds / 60) * 360)
+      console.log('seconds', seconds, 'the degree in the circle 🕝', secondDegrees)
 
 
 
