@@ -20,7 +20,7 @@
 
   <style>
     html {
-      background: #018DED url(http://unsplash.it/1500/1000?image=881&blur=5);
+      background: #018DED url(https://images.unsplash.com/photo-1522679056866-8dbbc8774a9d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=816&q=80);
       background-size: cover;
       font-family: 'helvetica neue';
       text-align: center;
@@ -39,14 +39,14 @@
     .clock {
       width: 30rem;
       height: 30rem;
-      border: 20px solid white;
+      border: 20px solid rgb(156,150,152);
       border-radius: 50%;
       margin: 50px auto;
       position: relative;
       padding: 2rem;
       box-shadow:
         0 0 0 4px rgba(0, 0, 0, 0.1),
-        inset 0 0 0 3px #EFEFEF,
+        inset 0 0 0 3px rgb(160,163,169),
         inset 0 0 10px black,
         0 0 10px rgba(0, 0, 0, 0.2);
     }
@@ -74,6 +74,12 @@
   </style>
 
   <script>
+    // these are the divs controlling the hands
+    const secondHand = document.querySelector('.second-hand');
+    const minuteHand = document.querySelector('.min-hand')
+    const hourHand = document.querySelector('.hour-hand')
+
+
     function setDate() {
       //get the actual time
       const now = new Date();
@@ -85,8 +91,29 @@
 
       // create a variable to get the degrees
       // 360` in the circle and we divide by 60 seconds
-      const secondDegrees = ((seconds / 60) * 360)
-      console.log('seconds', seconds, 'the degree in the circle 🕝', secondDegrees)
+      const secondDegrees = ((seconds / 60) * 360) + 90;
+      // console.log('seconds', seconds, 'the degree in the circle 🕝', secondDegrees)
+
+      secondHand.style.transform = `rotate(${secondDegrees}deg)`
+
+
+      const minutes = now.getMinutes();
+      // console.log(minutes)
+
+      const minutesDegrees = ((minutes / 60) * 360) + 90;
+      // console.log('minutes', minutes, 'the degree in the circle 🕝', minutesDegrees)
+
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`
+
+
+      const hour = now.getHours();
+
+      const hourDegrees = ((hour / 12) * 360) + 90;
+      console.log('the hour', hour, 'minutes', minutes, 'the degree in the circle 🕝', minutesDegrees)
+
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`
+
+
 
 
 
